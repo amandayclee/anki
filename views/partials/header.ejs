@@ -16,6 +16,8 @@
     <a href="/">Add a Card</a>
     <% if (user) { %>
         &nbsp;|&nbsp;
+        <img class="review-user-img" alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer">&nbsp;<span><%= user.name %></span>
+        &nbsp;|&nbsp;
         <a href="/logout">Log Out</a>
       <% } else { %>
         &nbsp;|&nbsp;
