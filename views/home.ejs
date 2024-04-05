@@ -1,3 +1,35 @@
 <%- include('./partials/header') %>
-  <p>Welcome to <%= title %></p>
-<%- include('./partials/footer') %>
+  <table id="list">
+    <thead>
+      <tr>
+        <th>Deck</th>
+        <th>New</th>
+        <th>Learn</th>
+        <th>Due</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="/test">Zero to Mastery</a></td>
+        <td>123</td>
+        <td>86</td>
+        <td>46</td>
+      </tr>
+      <tr>
+        <td><a href="/test">BigO Notation</a></td>
+        <td>87</td>
+        <td>12</td>
+        <td>59</td>
+      </tr>
+      <tr>
+        <td><a href="/test">Exam Prep</a></td>
+        <td>111</td>
+        <td>24</td>
+        <td>804</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>You've just reviewed 6 cards in 20 seconds.</p>
+  <p>You've been studying non-stop for 5 days!</p>
+
+  <%- include('./partials/footer') %>
