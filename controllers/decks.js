@@ -11,5 +11,5 @@ async function index(req, res) {
 }
 
 async function newDeck(req, res) {
-    res.render('decks/new', { title: 'Add a Deck' });
+    res.render('decks/new', { title: 'Add a Deck', msg: '' });
 }

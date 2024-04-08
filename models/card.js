@@ -7,10 +7,6 @@ const cardSchema = new Schema({
     },
     back: {
         type: String
-    },
-    deck: {
-        type: Schema.Types.ObjectId,
-        ref: 'Deck'
     }
 }, {
     timestamps: true

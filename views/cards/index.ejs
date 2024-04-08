@@ -18,16 +18,13 @@
         <td>Linked Lists are "null-terminated" which means the end of the list is denoted by the value "null". </td>
         <td>Zero to Mastery</td>
       </tr>
-      <tr>
-        <td>In JavaScript, what data structure is an Array actually?</td>
-        <td>An Object which contains properties and methods which make it Array-like.</td>
-        <td>Zero to Mastery</td>
-      </tr>
-      <tr>
-        <td>What data structure is recursion often used to traverse?</td>
-        <td>A tree.</td>
-        <td>Zero to Mastery</td>
-      </tr>
+      <% cards.forEach((c) => { %>  
+        <tr>
+          <td><%= c.front %></td>
+          <td><%= c.back %></td>
+          <td><%= c.deck %></td>
+        </tr>
+      <% }) %>
     </tbody>
   </table>
 

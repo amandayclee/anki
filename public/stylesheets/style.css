@@ -109,7 +109,7 @@ table td {
 
 #list {
   width: 700px;
-  height: 400px;
+  min-height: 150px;
   background-color: #ECEBFF;
   border-radius: 10px;
   margin-bottom: 50px;
@@ -248,5 +248,5 @@ hr {
   border-radius: 5px;
   cursor: pointer;
   float: right;
-  margin-top: 15px;
+  margin: 10px 0 15px 0;
 }

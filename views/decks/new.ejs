@@ -2,8 +2,9 @@
     <div id="list">
         <form id="add-new-card" action="/decks" method="POST">
             <label>Name:</label>
-            <input type="text" name="front" required>
+            <input type="text" name="name" required>
             <button type="submit">Add Deck</button>
         </form>
     </div>
+    <p><%= msg %></p>
 <%- include('../partials/footer') %>
