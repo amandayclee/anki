@@ -221,3 +221,32 @@ hr {
   object-fit: contain;
   margin-right: 5px;
 }
+
+#add-new-card {
+  display: block;
+  margin: 20px;
+}
+
+#add-new-card label {
+  font-size: 18px;
+  margin: 5px;
+  display: block;
+}
+
+#add-new-card input[type="text"] {
+  width: 100%; 
+  height: 60px;
+  display: block;
+  margin: 10px 0;
+}
+
+#add-new-card button[type="submit"] {
+  background-color: #8882f9;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  margin-top: 15px;
+}
