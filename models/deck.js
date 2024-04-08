@@ -5,6 +5,9 @@ const deckSchema = new Schema({
     name: {
         type: String
     }
-})
+}, {
+    timestamps: true
+});
+
 
 module.exports = mongoose.model('Deck', deckSchema);
