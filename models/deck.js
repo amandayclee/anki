@@ -7,4 +7,4 @@ const deckSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Deck', cardSchema);
+module.exports = mongoose.model('Deck', deckSchema);

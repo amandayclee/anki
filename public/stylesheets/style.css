@@ -233,7 +233,7 @@ hr {
   display: block;
 }
 
-#add-new-card input[type="text"] {
+#add-new-card textarea, #add-new-card input[type="text"] {
   width: 100%; 
   height: 60px;
   display: block;
