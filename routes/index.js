@@ -4,7 +4,7 @@ const passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'All Decks' });
+  res.redirect('/decks');
 });
 
 // Google OAuth login route

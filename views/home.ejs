@@ -21,12 +21,14 @@
         <td>12</td>
         <td>59</td>
       </tr>
-      <tr>
-        <td><a href="/decks/test">Exam Prep</a></td>
-        <td>111</td>
-        <td>24</td>
-        <td>804</td>
-      </tr>
+      <% decks.forEach((d) => { %>  
+        <tr>
+          <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
+          <td>Tbd</td>
+          <td>Tbd</td>
+          <td>Tbd</td>
+        </tr>
+      <% }) %>
       <tr>
         <td><a href="/decks/new">+ Add new Deck</a></td>
         <td></td>

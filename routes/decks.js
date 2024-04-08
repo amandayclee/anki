@@ -6,11 +6,11 @@ var decksCtrl = require('../controllers/decks')
 router.get('/test', function(req, res) {
   res.send('testing page');
 });
-
 // GET /decks
 router.get('/', decksCtrl.index);
-
 // GET /decks/new
 router.get('/new', decksCtrl.new);
+// POST /decks
+router.post('/', decksCtrl.create);
 
 module.exports = router;
