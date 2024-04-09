@@ -18,7 +18,6 @@ async function newDeck(req, res) {
 
 async function create(req, res) {
     try {
-        console.log(req.body);
         const newDeck = new Deck(req.body);
         await newDeck.save();
         res.render('decks/new', { title: 'Add a Deck', msg: 'Successfully Added!' });

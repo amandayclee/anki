@@ -7,7 +7,14 @@ const cardSchema = new Schema({
     },
     back: {
         type: String
-    }
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    userName: String,
+    userAvatar: String
 }, {
     timestamps: true
 })

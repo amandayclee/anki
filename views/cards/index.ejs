@@ -1,10 +1,11 @@
 <%- include('../partials/header') %>
-  <table id="list">
+  <table id="list" class="card">
     <thead>
       <tr>
         <th>Front</th>
         <th>Back</th>
         <th>Deck</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,14 @@
             <td><%= c.front %></td>
             <td><%= c.back %></td>
             <td><%= d.name %></td>
+            <td>
+              <% if (user?._id.equals(c.user)) { %>
+                <form action="/cards/<%= c._id %>?_method=DELETE" method="POST">
+                  <input type="hidden" name="deck" value="<%= d._id %>">
+                  <button type="submit">X</button>
+                </form>
+              <% } %>
+            </td>
           </tr>
         <% }) %>
       <% }) %>

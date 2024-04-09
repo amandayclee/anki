@@ -8,5 +8,7 @@ router.get('/', cardsCtrl.index);
 router.get('/new', cardsCtrl.new);
 // POST /cards
 router.post('/', cardsCtrl.create);
+// DELETE /card
+router.delete('/:id', cardsCtrl.delete);
 
 module.exports = router;

@@ -10,7 +10,7 @@
                 <% decks.forEach((d) => { %>  
                     <option value="<%= d._id %>"><%= d.name%></option>
                 <% }) %>
-                <option value="" selected>Undefined</option>
+                <option value="" disabled selected>Select a Deck</option>
             </select>
             <button type="submit">Add Card</button>
         </form>
