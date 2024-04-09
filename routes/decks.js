@@ -12,5 +12,7 @@ router.get('/', decksCtrl.index);
 router.get('/new', decksCtrl.new);
 // POST /decks
 router.post('/', decksCtrl.create);
+// DELETE /decks/:id
+router.delete('/:id', decksCtrl.delete);
 
 module.exports = router;

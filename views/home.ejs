@@ -6,6 +6,7 @@
         <th>New</th>
         <th>Learn</th>
         <th>Due</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,14 @@
           <td>Tbd</td>
           <td>Tbd</td>
           <td>Tbd</td>
+          <td>
+            <% if (user?._id.equals(d.user)) { %>
+              <form action="/decks/<%= d._id %>?_method=DELETE" method="POST">
+                <input type="hidden" name="deck" value="<%= d._id %>">
+                <button type="submit">X</button>
+              </form>
+            <% } %>
+          </td>
         </tr>
       <% }) %>
       <tr>

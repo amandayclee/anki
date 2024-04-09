@@ -8,7 +8,14 @@ const deckSchema = new Schema({
     cards: [{
         type: Schema.Types.ObjectId,
         ref: 'Card'
-    }]
+    }],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    userName: String,
+    userAvatar: String
 }, {
     timestamps: true
 });
