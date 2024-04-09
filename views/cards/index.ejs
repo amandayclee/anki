@@ -18,12 +18,14 @@
         <td>Linked Lists are "null-terminated" which means the end of the list is denoted by the value "null". </td>
         <td>Zero to Mastery</td>
       </tr>
-      <% cards.forEach((c) => { %>  
-        <tr>
-          <td><%= c.front %></td>
-          <td><%= c.back %></td>
-          <td><%= c.deck %></td>
-        </tr>
+      <% decks.forEach((d) => { %>
+        <% d.cards.forEach((c) => { %>  
+          <tr>
+            <td><%= c.front %></td>
+            <td><%= c.back %></td>
+            <td><%= d.name %></td>
+          </tr>
+        <% }) %>
       <% }) %>
     </tbody>
   </table>

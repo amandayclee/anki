@@ -8,8 +8,8 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const cards = await Card.find({});
-    res.render('cards/index', { cards, title: 'All Cards' });
+    const decks = await Deck.find({}).populate("cards");
+    res.render('cards/index', { decks, title: 'All Cards' });
 }
 
 async function newCard(req, res) {
@@ -19,11 +19,12 @@ async function newCard(req, res) {
 
 async function create(req, res) {
     const decks = await Deck.find({});
-    console.log(decks);
+    const {front, back} = req.body;
+    const newCard = await Card.create({front, back});
+    const deck = await Deck.findById(req.body.deck);
+    deck.cards.push(newCard._id);
     try {
-        console.log(req.body);
-        const newCard = new Card(req.body);
-        await newCard.save();
+        await deck.save();
         res.render('cards/new', { decks, title: 'Add a Card', msg: 'Successfully Added!' });
     } catch (error) {
         res.render('cards/new', { decks, title: 'Add a Card', msg: error }) //render file path
