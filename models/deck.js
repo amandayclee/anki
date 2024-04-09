@@ -5,10 +5,10 @@ const deckSchema = new Schema({
     name: {
         type: String
     }, 
-    card: {
+    cards: [{
         type: Schema.Types.ObjectId,
         ref: 'Card'
-    }
+    }]
 }, {
     timestamps: true
 });

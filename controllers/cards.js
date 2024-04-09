@@ -1,4 +1,5 @@
 const Card = require('../models/card');
+const Deck = require('../models/deck');
 
 module.exports = {
     index,
@@ -12,16 +13,19 @@ async function index(req, res) {
 }
 
 async function newCard(req, res) {
-    res.render('cards/new', { title: 'Add a Card', msg: ''});
+    const decks = await Deck.find({});
+    res.render('cards/new', { decks, title: 'Add a Card', msg: ''});
 }
 
 async function create(req, res) {
+    const decks = await Deck.find({});
+    console.log(decks);
     try {
         console.log(req.body);
         const newCard = new Card(req.body);
         await newCard.save();
-        res.render('cards/new', { title: 'Add a Card', msg: 'Successfully Added!' });
+        res.render('cards/new', { decks, title: 'Add a Card', msg: 'Successfully Added!' });
     } catch (error) {
-        res.render('cards/new', { title: 'Add a Card', msg: error }) //render file path
+        res.render('cards/new', { decks, title: 'Add a Card', msg: error }) //render file path
     }
 }

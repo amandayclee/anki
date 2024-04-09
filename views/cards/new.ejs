@@ -6,7 +6,12 @@
             <label>Back:</label>
             <textarea type="text" name="back" required></textarea>
             <label>Deck:</label>
-            <textarea type="text" name="deck" required></textarea>
+            <select name="deck" required>
+                <% decks.forEach((d) => { %>  
+                    <option value="<%= d._id %>"><%= d.name%></option>
+                <% }) %>
+                <option value="" selected>Undefined</option>
+            </select>
             <button type="submit">Add Card</button>
         </form>
     </div>
