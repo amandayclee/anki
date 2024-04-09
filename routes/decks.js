@@ -10,6 +10,8 @@ router.get('/test', function(req, res) {
 router.get('/', decksCtrl.index);
 // GET /decks/new
 router.get('/new', decksCtrl.new);
+// GET /decks/:id (show functionality) MUST be below new route
+router.get('/:id', decksCtrl.show);
 // POST /decks
 router.post('/', decksCtrl.create);
 // DELETE /decks/:id

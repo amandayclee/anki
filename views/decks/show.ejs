@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+  <table id="list" class="card">
+    <thead>
+      <tr>
+        <th>Front</th>
+        <th>Back</th>
+        <th>Deck</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Does a Doubly Linked List use more memory than a Singly Linked List?</td>
+        <td>Yes. The 'previous' pointer will require more memory for the Doubly Linked List to be implemented.</td>
+        <td>Zero to Mastery</td>
+      </tr>
+      <tr>
+        <td>How do you know that you have reached the end of a Linked List?</td>
+        <td>Linked Lists are "null-terminated" which means the end of the list is denoted by the value "null". </td>
+        <td>Zero to Mastery</td>
+      </tr>
+    <% deck.cards.forEach((c) => { %>  
+        <tr>
+        <td><%= c.front %></td>
+        <td><%= c.back %></td>
+        <td><%= deck.name %></td>
+        <td>
+            <% if (user?._id.equals(c.user)) { %>
+            <form action="/cards/<%= c._id %>?_method=DELETE" method="POST">
+                <input type="hidden" name="deck" value="<%= d._id %>">
+                <button type="submit">X</button>
+            </form>
+            <% } %>
+        </td>
+        </tr>
+    <% }) %>
+    </tbody>
+  </table>
+
+  <%- include('../partials/footer') %>

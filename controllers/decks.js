@@ -5,7 +5,8 @@ module.exports = {
     index,
     new: newDeck,
     create,
-    delete: deleteDeck
+    delete: deleteDeck,
+    show
 };
 
 
@@ -45,4 +46,9 @@ async function deleteDeck(req, res) {
     } catch (err) {
         console.log(err);
     }
+}
+
+async function show(req, res) {
+    const deck = await Deck.findById(req.params.id).populate('cards');
+    res.render('decks/show', { deck, title: `All Cards in ${deck.name}` });
 }
