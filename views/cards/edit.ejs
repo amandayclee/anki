@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+    <div id="list">
+        <form id="add-new-card" action="/cards/<%= card._id %>/edit?_method=PUT" method="POST">
+            <label>Front:</label>
+            <textarea type="text" name="front" required><%= card.front %></textarea>
+            <label>Back:</label>
+            <textarea type="text" name="back" required><%= card.back %></textarea>
+            <label>Deck:</label>
+            <select name="deckUpdate" required>
+                <% decks.forEach((d) => { %>
+                    <% if (d.id === deck.id) { %>
+                        <option value="<%= d._id %>" selected><%= d.name%></option>
+                        <% } else { %>
+                        <option value="<%= d._id %>"><%= d.name%></option>
+                    <% }  %>
+                <% }) %>
+            </select>
+            <input type="hidden" name="deckOld" value="<%= deck._id %>">
+            <button type="submit">Update Card</button>
+        </form>
+        <form id="add-new-card" action="/cards/<%= card._id %>?_method=DELETE" method="POST">
+            <input type="hidden" name="deck" value="<%= deck._id %>">
+            <button type="submit">Delete Card</button>
+        </form>
+    </div>
+    <p><%= msg %></p>
+<%- include('../partials/footer') %>

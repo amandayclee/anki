@@ -5,7 +5,9 @@ module.exports = {
     index,
     new: newCard,
     create,
-    delete: deleteCard
+    delete: deleteCard,
+    edit,
+    update
 };
 
 async function index(req, res) {
@@ -39,6 +41,7 @@ async function create(req, res) {
 }
 
 async function deleteCard(req, res) {
+    console.log(req.body);
     try {
         const deck = await Deck.findById(req.body.deck);
         deck.cards.remove(req.params.id);
@@ -47,5 +50,47 @@ async function deleteCard(req, res) {
         res.redirect('/cards');
     } catch (err) {
         console.log(err);
+    }
+}
+
+async function edit(req, res) {
+    const deck = await Deck.findById(req.query.deck);
+    const decks = await Deck.find({});
+    const card = await Card.findById(req.params.id);
+    res.render('cards/edit', {
+        title: `Edit Card ${card._id}`,
+        decks,
+        deck,
+        card,
+        msg: ''
+    });
+}
+
+async function update(req, res) {
+    try {
+        const decks = await Deck.find({});
+        const card = await Card.findByIdAndUpdate(
+            req.params.id,
+            { 
+                front: req.body.name,
+                back: req.body.back 
+            }
+        );
+        await card.save();
+        const oldDeck = await Deck.findById(req.body.deckOld);
+        oldDeck.cards.remove(card);
+        const newDeck = await Deck.findById(req.body.deckUpdate);
+        newDeck.cards.push(card);
+        await oldDeck.save();
+        await newDeck.save();
+        res.render(`cards/edit`, {
+            title: `Edit Card ${card._id}`,
+            card,
+            deck: newDeck,
+            decks,
+            msg: 'Successfully Updated!'
+        });
+    } catch (error) {
+        console.error(error);
     }
 }
