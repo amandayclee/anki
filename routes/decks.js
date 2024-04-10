@@ -12,9 +12,14 @@ router.get('/', decksCtrl.index);
 router.get('/new', decksCtrl.new);
 // GET /decks/:id (show functionality) MUST be below new route
 router.get('/:id', decksCtrl.show);
+// GET /decks/:id/edit
+router.get('/:id/edit', decksCtrl.edit);
 // POST /decks
 router.post('/', decksCtrl.create);
 // DELETE /decks/:id
 router.delete('/:id', decksCtrl.delete);
+// PUT /decks
+router.put('/:id/edit', decksCtrl.update);
+
 
 module.exports = router;

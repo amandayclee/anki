@@ -170,7 +170,7 @@ table td {
   align-items: center;
 }
 
-.review-user-img {
+.review-user-img, #setting-img {
   width: 28px;
   border-radius: 50%;
   object-fit: contain;
@@ -178,20 +178,17 @@ table td {
 }
 
 #add-new-card {
-  display: block;
   margin: 20px;
 }
 
 #add-new-card label {
   font-size: 18px;
   margin: 5px;
-  display: block;
 }
 
 #add-new-card textarea, #add-new-card input[type="text"] {
   width: 100%; 
   height: 60px;
-  display: block;
   margin: 10px 0;
 }
 
@@ -203,13 +200,14 @@ table td {
 }
 
 #add-new-card button[type="submit"] {
+  align-items: right;
+  width: 20%;
   background-color: #8882f9;
   color: #fff;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  float: right;
   margin: 10px 0 15px 0;
 }
 

@@ -6,7 +6,9 @@ module.exports = {
     new: newDeck,
     create,
     delete: deleteDeck,
-    show
+    show,
+    edit,
+    update
 };
 
 
@@ -51,4 +53,30 @@ async function deleteDeck(req, res) {
 async function show(req, res) {
     const deck = await Deck.findById(req.params.id).populate('cards');
     res.render('decks/show', { deck, title: `You're reviewing ${deck.name}` });
+}
+
+async function edit(req, res) {
+    const deck = await Deck.findById(req.params.id);
+    res.render('decks/edit', {
+        title: 'Edit Deck Name',
+        deck,
+        msg: ''
+    });
+}
+
+async function update(req, res) {
+    try {
+        const deck = await Deck.findByIdAndUpdate(
+            req.params.id,
+            { name: req.body.name }
+        );
+        await deck.save();
+        res.render(`decks/edit`, {
+            title: 'Edit Deck Name',
+            deck,
+            msg: 'Successfully Updated!'
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }

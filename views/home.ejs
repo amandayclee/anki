@@ -4,9 +4,8 @@
       <tr>
         <th>Deck</th>
         <th>New</th>
-        <th>Learn</th>
         <th>Due</th>
-        <th>Delete</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -15,13 +14,9 @@
           <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
           <td>Tbd</td>
           <td>Tbd</td>
-          <td>Tbd</td>
           <td>
             <% if (user?._id.equals(d.user)) { %>
-              <form action="/decks/<%= d._id %>?_method=DELETE" method="POST">
-                <input type="hidden" name="deck" value="<%= d._id %>">
-                <button type="submit">X</button>
-              </form>
+              <a href="/decks/<%= d._id %>/edit"><img id="setting-img" src="/images/setting.png"></a>
             <% } %>
           </td>
         </tr>
