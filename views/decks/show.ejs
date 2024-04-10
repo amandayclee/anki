@@ -3,12 +3,12 @@
     <% deck.cards.forEach((c, index) => { %>  
         <div class="card-item" id="card<%= index %>">
             <p class="front"><%= index+1 %>. <%= c.front %></p>
-            <p class="back"><%= c.back %></p>
+            <p class="back hidden filp"><%= c.back %></p>
             <div class="card-button">
-                <button class="show-answer">Show Answer</button>
-                <button class="show-answer">Easy</button>
-                <button class="show-answer">Medium</button>
-                <button class="show-answer">Hard</button>
+                <button class="show-answer" onclick="showAnswer()">Show Answer</button>
+                <button class="hidden filp" onclick="setNextCard()">Easy</button>
+                <button class="hidden filp" onclick="setNextCard()">Medium</button>
+                <button class="hidden filp" onclick="setNextCard()">Hard</button>
             </div>
         </div>
     <% }) %>

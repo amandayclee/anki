@@ -242,7 +242,7 @@ table td {
   justify-content: center;
 }
 
-.show-answer {
+.card-button button {
   background-color: #8882f9;
   color: #fff;
   padding: 5px 10px;
@@ -250,4 +250,8 @@ table td {
   border-radius: 5px;
   cursor: pointer;
   margin: 5px;
+}
+
+.hidden {
+  display: none;
 }
