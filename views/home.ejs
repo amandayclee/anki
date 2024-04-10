@@ -4,7 +4,7 @@
       <tr>
         <th>Deck</th>
         <th>New</th>
-        <th>Due</th>
+        <th>Learning</th>
         <th></th>
       </tr>
     </thead>
@@ -12,7 +12,7 @@
       <% decks.forEach((d) => { %>  
         <tr>
           <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
-          <td>Tbd</td>
+          <td><%= d.cards.length %></td>
           <td>Tbd</td>
           <td>
             <% if (user?._id.equals(d.user)) { %>

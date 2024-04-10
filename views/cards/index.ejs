@@ -15,7 +15,6 @@
             <td><%= c.front %></td>
             <td><%= c.back %></td>
             <td><%= d.name %></td>
-            <td><%= d._id %></td>
             <td>
               <% if (user?._id.equals(c.user)) { %>
                 <a href="/cards/<%= c._id %>/edit?deck=<%= d._id %>"><img id="setting-img" src="/images/setting.png"></a>

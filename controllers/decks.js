@@ -74,7 +74,7 @@ async function update(req, res) {
         res.render(`decks/edit`, {
             title: 'Edit Deck Name',
             deck,
-            msg: 'Successfully Updated!'
+            msg: 'Successfully Updated!',
         });
     } catch (error) {
         console.error(error);

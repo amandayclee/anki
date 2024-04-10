@@ -108,14 +108,14 @@ table td {
 }
 
 .cards td:nth-child(1), .cards td:nth-child(2) {
-  font-size: 12px;
+  font-size: 16px;
   min-width: 150px;
   max-width: 200px;
   word-wrap: break-word;
 }
 
 .cards td:nth-child(3), .cards td:nth-child(3) {
-  font-size: 14px;
+  font-size: 16px;
   min-width: 50px;
 }
 
