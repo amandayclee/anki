@@ -107,18 +107,6 @@ table td {
   text-align: center;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card p {
-  word-wrap: break-word;
-  max-width: 400px;
-}
-
 .cards td:nth-child(1), .cards td:nth-child(2) {
   font-size: 12px;
   min-width: 150px;
@@ -223,4 +211,43 @@ table td {
   cursor: pointer;
   float: right;
   margin: 10px 0 15px 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0 50px 0;
+}
+
+.card p {
+  word-wrap: break-word;
+  max-width: 600px;
+  margin: 10px;
+}
+
+.front {
+  color: #494B67;
+}
+
+.back {
+  border-top: 3px dashed #494B67;
+  padding: 10px;
+  color: #281fb1
+}
+
+.card-button {
+  display: flex;
+  justify-content: center;
+}
+
+.show-answer {
+  background-color: #8882f9;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
 }

@@ -10,18 +10,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a href="/decks/test">Zero to Mastery</a></td>
-        <td>123</td>
-        <td>86</td>
-        <td>46</td>
-      </tr>
-      <tr>
-        <td><a href="/decks/test">BigO Notation</a></td>
-        <td>87</td>
-        <td>12</td>
-        <td>59</td>
-      </tr>
       <% decks.forEach((d) => { %>  
         <tr>
           <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>

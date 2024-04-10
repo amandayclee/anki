@@ -1,10 +1,17 @@
 <%- include('../partials/header') %>
 <div id="list" class="card">
-    <% deck.cards.forEach((c) => { %>  
-        <p><%= c.front %></p>
-        <p><%= c.back %></p>
+    <% deck.cards.forEach((c, index) => { %>  
+        <div class="card-item" id="card<%= index %>">
+            <p class="front"><%= index+1 %>. <%= c.front %></p>
+            <p class="back"><%= c.back %></p>
+            <div class="card-button">
+                <button class="show-answer">Show Answer</button>
+                <button class="show-answer">Easy</button>
+                <button class="show-answer">Medium</button>
+                <button class="show-answer">Hard</button>
+            </div>
+        </div>
     <% }) %>
-    <button type="submit">Show Answer</button>
 </div>
 
 <%- include('../partials/footer') %>

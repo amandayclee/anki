@@ -50,5 +50,5 @@ async function deleteDeck(req, res) {
 
 async function show(req, res) {
     const deck = await Deck.findById(req.params.id).populate('cards');
-    res.render('decks/show', { deck, title: `All Cards in ${deck.name}` });
+    res.render('decks/show', { deck, title: `You're reviewing ${deck.name}` });
 }
