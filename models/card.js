@@ -13,8 +13,11 @@ const cardSchema = new Schema({
       ref: 'User',
       required: true
     },
-    userName: String,
-    userAvatar: String
+    userReviewLog: [{
+        type: Schema.Types.ObjectId,
+        ref: 'UserReviewLog',
+        required: true
+    }],
 }, {
     timestamps: true
 })

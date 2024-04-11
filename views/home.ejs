@@ -3,33 +3,43 @@
     <thead>
       <tr>
         <th>Deck</th>
-        <th>New</th>
-        <th>Learning</th>
-        <th></th>
+        <% if (!user) { %>
+          <th>Total Cards</th>
+        <% } else { %>
+          <th>New</th>
+          <th>Due</th>
+          <th>Detail</th>
+        <% } %>
       </tr>
     </thead>
     <tbody>
       <% decks.forEach((d) => { %>  
         <tr>
-          <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
-          <td><%= d.cards.length %></td>
-          <td>Tbd</td>
-          <td>
-            <% if (user?._id.equals(d.user)) { %>
-              <a href="/decks/<%= d._id %>/edit"><img id="setting-img" src="/images/setting.png"></a>
-            <% } %>
-          </td>
+          <% if (!user) { %>
+            <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
+            <td><%= d.cards.length %></td>
+          <% } else { %>
+            <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
+            <td>Cards added today</td>
+            <td>Cards overdue</td>
+            <td>
+              <% if (user?._id.equals(d.user)) { %>
+                <a href="/decks/<%= d._id %>/edit"><img id="setting-img" src="/images/setting.png"></a>
+              <% } %>
+            </td>
+          <% } %>
         </tr>
       <% }) %>
       <tr>
-        <td><a href="/decks/new">+ Add new Deck</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <% if (user) { %>
+          <td><a href="/decks/new">+ Add new Deck</a></td>
+          <% } %>
       </tr>
     </tbody>
   </table>
-  <p>You've just reviewed 6 cards in 20 seconds.</p>
-  <p>You've been studying non-stop for 5 days!</p>
-
+  <% if (!user) { %>
+    <p>Log in to get your review history</p>
+  <% } else { %>
+    <p>You've been studying non-stop for 5 days!</p>
+  <% } %>
   <%- include('./partials/footer') %>
