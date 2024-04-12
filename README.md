@@ -26,6 +26,7 @@ Anki is a popular open-source, spaced repetition flashcard program. It allows us
 - CSS
 
 # Getting Started
+Link for my verison of [Anki](https://anki-notes-7bfcac26f812.herokuapp.com/).
 1. You have the option to review decks added by other users as a visitor, or you can log in using your Google account to create your own cards and decks.
 2. When logged in, you have full CRUD functionality for cards and decks that you created.
 3. Now, it's time to review your card deck. Select a deck and reveal the cards. Try to think of the answer on your own, and then click the "Show Answer" button.
@@ -37,3 +38,4 @@ Planned future enhancements:
 - [ ] add `exportCard` for user to dowload cards to local device
 - [ ] provide `intervalSetting` to let user set their review pace 
 
+Link for my [trello](https://trello.com/b/u4J9h1Jp/project-2) of this project. You can also find wireframe and entity relation diagram here.
