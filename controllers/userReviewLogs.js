@@ -28,29 +28,16 @@ async function getUserReviewLog(req, res) {
         const card = await Card.findById(req.body.cardId);
         const currentUser = await User.findById(req.body.userId);
 
-        let targetUserReviewLog;
+        let targetUserReviewLog = null;
 
-        if (card.userReviewLog.length === 0) {
-            const newUserReviewLog = await UserReviewLog.create({user: currentUser._id, reviewTime: [], dueTime: null});
-            card.userReviewLog.push(newUserReviewLog);
-            await card.save();
-            targetUserReviewLog = newUserReviewLog;
-        } else {
-            for (let obj of card.userReviewLog) {
-                const singleUserReviewLog = await UserReviewLog.findById(obj);
-                if (singleUserReviewLog.user._id.toString() === currentUser._id.toString()) {
-                    targetUserReviewLog = singleUserReviewLog;
-                    break;
-                }
-            }
-            if (!targetUserReviewLog) {
-                console.log(`cannot find obj in existing reviews`)
-                const newUserReviewLog = await UserReviewLog.create({user: currentUser._id, reviewTime: [], dueTime: null});
-                card.userReviewLog.push(newUserReviewLog);
-                await card.save();
-                targetUserReviewLog = newUserReviewLog;
+        for (let obj of card.userReviewLog) {
+            const singleUserReviewLog = await UserReviewLog.findById(obj);
+            if (singleUserReviewLog.user._id.toString() === currentUser._id.toString()) {
+                targetUserReviewLog = singleUserReviewLog;
+                break;
             }
         }
+        
         res.send(targetUserReviewLog);
     } catch (error) {
         console.error(error);

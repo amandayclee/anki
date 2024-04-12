@@ -20,7 +20,7 @@
             <td><%= d.cards.length %></td>
           <% } else { %>
             <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
-            <td>Cards added today</td>
+            <td><%= d.cards %></td>
             <td>Cards overdue</td>
             <td>
               <% if (user?._id.equals(d.user)) { %>
