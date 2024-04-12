@@ -5,15 +5,17 @@
             <p class="front"><%= index+1 %>. <%= c.front %></p>
             <p class="back hidden filp"><%= c.back %></p>
             <div class="card-button">
-                <button class="show-answer" onclick="showAnswer()">Show Answer</button>
-                <button class="hidden filp" onclick="setNextCard()">Next</button>
-                <%  if (user) { %>  
+                <% if (user) { %>  
+                    <button class="show-answer" onclick="showAnswer()">Show Answer</button>
+                    <button class="hidden filp" onclick="setNextCardWithUser()">Next</button>
                     <input type="hidden" name="userId" value="<%= user._id %>">
                     <input type="hidden" name="card<%= index %>Id" value="<%= c._id %>">
-                <% } %>  
+                <% } else { %>
+                    <button class="show-answer" onclick="showAnswer()">Show Answer</button>
+                    <button class="hidden filp" onclick="setNextCard()">Next</button>  
+                <% } %>
             </div>
         </div>
     <% }) %>
 </div>
-
 <%- include('../partials/footer') %>

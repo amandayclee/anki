@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-const Card = require('../models/card');
-const UserReviewLog = require('../models/userReviewLog');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,7 +23,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect: '/initial',
+    successRedirect: '/',
     failureRedirect: '/'
   }
 ));
@@ -37,37 +35,6 @@ router.get('/logout', function(req, res){
   });
 });
 
-// After successful Google OAuth authentication
-router.get('/initial', async function(req, res) {
-
-  const cards = await Card.find({});
-
-  // Initialize user review logs for each card
-  for (let card of cards) {
-    const cardObj = await Card.findById(card);
-    let exist = null;
-    if (cardObj.userReviewLog.length > 0) {
-      for (let reviewLoginACard of cardObj.userReviewLog) {
-        const review = await UserReviewLog.findById(reviewLoginACard);
-        if (review.user._id.toString() === req.user._id.toString()) {
-          exist = true;
-          break;
-        };
-      }
-      if (!exist) {
-        const newUserReviewLog = await UserReviewLog.create({ user: req.user._id, reviewTime: [], dueTime: null });
-        cardObj.userReviewLog.push(newUserReviewLog);
-        await cardObj.save();
-      }
-    } else {
-      const newUserReviewLog = await UserReviewLog.create({ user: req.user._id, reviewTime: [], dueTime: null });
-      cardObj.userReviewLog.push(newUserReviewLog);
-      await cardObj.save();
-    }
-  }
-  // Redirect or render appropriate view
-  res.redirect('/');
-});
 
 module.exports = router;
 

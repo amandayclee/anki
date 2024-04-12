@@ -1,5 +1,6 @@
 const Deck = require('../models/deck');
 const Card = require('../models/card');
+const UserReviewLog = require('../models/userReviewLog');
 
 module.exports = {
     index,
@@ -14,7 +15,70 @@ module.exports = {
 
 async function index(req, res) {
     const decks = await Deck.find({});
-    res.render('home', { decks, title: 'All Decks'});
+    const cards = await Card.find({});
+
+    let newList = [];
+    let dueList = [];
+
+
+    if (req.user) {
+        for (let card of cards) {
+            const cardObj = await Card.findById(card);
+            let exist = null;
+            if (cardObj.userReviewLog.length > 0) {
+                for (let reviewLoginACard of cardObj.userReviewLog) {
+                    const review = await UserReviewLog.findById(reviewLoginACard);
+                    if (review.user._id.toString() === req.user._id.toString()) {
+                        exist = true;
+                        break;
+                    };
+                }
+                if (!exist) {
+                    const newUserReviewLog = await UserReviewLog.create({ user: req.user._id, reviewTime: [], dueTime: null });
+                    cardObj.userReviewLog.push(newUserReviewLog);
+                    await newUserReviewLog.save();
+                    await cardObj.save();
+                }
+            } else {
+                const newUserReviewLog = await UserReviewLog.create({ user: req.user._id, reviewTime: [], dueTime: null });
+                cardObj.userReviewLog.push(newUserReviewLog);
+                await newUserReviewLog.save();
+                await cardObj.save();
+            }
+        }
+
+        for (let deck of decks) {
+            const deckObj = await Deck.findById(deck);
+            let newCardsCount = 0;
+            let dueCardsCount = 0;
+      
+            for (let card of deckObj.cards) {
+                const cardObj = await Card.findById(card);
+                for (let reviewlog of cardObj.userReviewLog) {
+                    const reivewObj = await UserReviewLog.findById(reviewlog);
+                    if (reivewObj.user._id.toString() === req.user._id.toString()) {
+
+                        if (reivewObj.reviewTime.length === 0) {
+                            newCardsCount++;
+                        }
+                
+                        if (reivewObj.dueTime && new Date(reivewObj.dueTime) > new Date()) {
+                            dueCardsCount++;
+                        }
+                    }
+                }
+            }
+            newList.push(newCardsCount);
+            dueList.push(dueCardsCount);
+        }
+    }
+
+    // Redirect or render appropriate view
+    if (req.user) {
+        res.render('home', { decks, title: 'All Decks', newList, dueList});
+    } else {
+        res.render('home', { decks, title: 'All Decks' });
+    }
 }
 
 async function newDeck(req, res) {

@@ -13,29 +13,37 @@
       </tr>
     </thead>
     <tbody>
-      <% decks.forEach((d) => { %>  
+      <% if (decks.length !== 0) { %>
+        <% decks.forEach((d, index) => { %>  
+          <tr>
+            <% if (!user) { %>
+              <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
+              <td><%= d.cards.length %></td>
+            <% } else { %>
+              <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
+              <td><%= newList[index] %></td>
+              <td><%= dueList[index] %></td>
+              <td>
+                <% if (user?._id.equals(d.user)) { %>
+                  <a href="/decks/<%= d._id %>/edit"><img id="setting-img" src="/images/setting.png"></a>
+                <% } %>
+              </td>
+            <% } %>
+          </tr>
+        <% }) %>
+      <% } else {  %>
         <tr>
-          <% if (!user) { %>
-            <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
-            <td><%= d.cards.length %></td>
-          <% } else { %>
-            <td><a href="/decks/<%= d._id %>"><%= d.name %></a></td>
-            <td><%= d.cards %></td>
-            <td>Cards overdue</td>
-            <td>
-              <% if (user?._id.equals(d.user)) { %>
-                <a href="/decks/<%= d._id %>/edit"><img id="setting-img" src="/images/setting.png"></a>
-              <% } %>
-            </td>
-          <% } %>
+          <td>Log in to add some decks and cards!</td>
         </tr>
-      <% }) %>
+      <% } %>
       <tr>
         <% if (user) { %>
           <td><a href="/decks/new">+ Add new Deck</a></td>
-          <% } %>
+        <% } %>
       </tr>
     </tbody>
+    
+    
   </table>
   <% if (!user) { %>
     <p>Log in to get your review history</p>

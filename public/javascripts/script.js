@@ -23,54 +23,57 @@ function showCurrentCard() {
 async function setNextCard() {
     if (currentCardIndex < document.querySelectorAll(".card-item").length - 1) {
         currentCardIndex++;
-
-        document.querySelectorAll(".filp").forEach(element => {
-            element.classList.add("hidden");
-        })
-        document.querySelectorAll(".show-answer").forEach(element => {
-            element.classList.remove("hidden");
-        })
-
-        const today = new Date()
-        const dueDate = new Date(today.setSeconds(today.getSeconds() + 30)).toISOString();
-
-        const userId = document.querySelector("input[name='userId']").value;
-        const cardId = document.querySelector(`input[name='card${currentCardIndex - 1}Id']`).value;
-    
-        const userReviewLogId = await fetch("/userReviewLogs", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({
-                userId,
-                cardId
-            })
-        }).then(res => res.json())
-        .then(data => data._id);
-
-        const response = await fetch(`/userReviewLogs/${userReviewLogId}/edit`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({
-                userReviewLogId: userReviewLogId,
-                reviewTime: today,  // should be push into reviewDate array
-                dueTime: dueDate // {dueDate: "Sat Apr 13 2024 10:53:47 GMT-0500 (Central Daylight Time)"}
-            })
-        });
-
-        // const data = await response.json()
-        if (response.ok) {
-            console.log('Review log updated successfully.');
-        } else {
-            console.error('Failed to update review log.');
-        }
-
         showCurrentCard();
     } else {
         document.querySelector(".card").innerText = "Congrats! You reviewed all the cards!";
+    }
+}
+
+async function setNextCardWithUser() {
+    if (currentCardIndex < document.querySelectorAll(".card-item").length - 1) {
+        await updateReviewLog();
+        currentCardIndex++;
+        showCurrentCard();
+    } else {
+        await updateReviewLog();
+        document.querySelector(".card").innerText = "Congrats! You reviewed all the cards!";
+    }
+}
+
+async function updateReviewLog() {
+    const today = new Date();
+    const dueDate = new Date(today.setSeconds(today.getSeconds() + 30)).toISOString();
+    const userId = document.querySelector("input[name='userId']").value;
+    const cardId = document.querySelector(`input[name='card${currentCardIndex}Id']`).value;
+
+    const userReviewLogId = await fetch("/userReviewLogs", {
+        method: "POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            userId,
+            cardId
+        })
+    }).then(res => res.json())
+    .then(data => data._id);
+
+    const response = await fetch(`/userReviewLogs/${userReviewLogId}/edit`, {
+        method: "PUT",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            userReviewLogId: userReviewLogId,
+            reviewTime: today,
+            dueTime: dueDate
+        })
+    });
+
+    if (response.ok) {
+        console.log('Review log updated successfully.');
+    } else {
+        console.error('Failed to update review log.');
     }
 }
 
