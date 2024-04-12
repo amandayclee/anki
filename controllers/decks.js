@@ -62,7 +62,7 @@ async function index(req, res) {
                             newCardsCount++;
                         }
                 
-                        if (reivewObj.dueTime && new Date(reivewObj.dueTime) > new Date()) {
+                        if (reivewObj.dueTime && new Date(reivewObj.dueTime) < new Date()) {
                             dueCardsCount++;
                         }
                     }
