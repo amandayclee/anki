@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
     <div id="list">
-        <form id="add-new-card" action="/cards/<%= card._id %>/edit?_method=PUT" method="POST">
+        <form id="add-card" class="button-form" action="/cards/<%= card._id %>/edit?_method=PUT" method="POST">
             <label>Front:</label>
             <textarea type="text" name="front" required><%= card.front %></textarea>
             <label>Back:</label>
@@ -18,7 +18,7 @@
             <input type="hidden" name="deckOld" value="<%= deck._id %>">
             <button type="submit">Update Card</button>
         </form>
-        <form id="add-new-card" action="/cards/<%= card._id %>?_method=DELETE" method="POST">
+        <form id="delete-card" class="button-form" action="/cards/<%= card._id %>?_method=DELETE" method="POST">
             <input type="hidden" name="deck" value="<%= deck._id %>">
             <button type="submit">Delete Card</button>
         </form>

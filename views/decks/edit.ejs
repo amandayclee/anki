@@ -1,11 +1,11 @@
 <%- include('../partials/header') %>
     <div id="list">
-        <form id="add-new-card" action="/decks/<%= deck._id %>/edit?_method=PUT" method="POST">
+        <form id="update-deck" class="button-form" action="/decks/<%= deck._id %>/edit?_method=PUT" method="POST">
             <label>Name:</label>
             <input type="text" name="name" value="<%= deck.name %>" required>
             <button type="submit">Update Deck</button>
         </form>
-        <form id="add-new-card" action="/decks/<%= deck._id %>?_method=DELETE" method="POST">
+        <form id="delete-deck" class="button-form" action="/decks/<%= deck._id %>?_method=DELETE" method="POST">
             <button type="submit">Delete Deck</button>
         </form>
     </div>
