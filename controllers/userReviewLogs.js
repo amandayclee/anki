@@ -43,6 +43,13 @@ async function getUserReviewLog(req, res) {
                     break;
                 }
             }
+            if (!targetUserReviewLog) {
+                console.log(`cannot find obj in existing reviews`)
+                const newUserReviewLog = await UserReviewLog.create({user: currentUser._id, reviewTime: [], dueTime: null});
+                card.userReviewLog.push(newUserReviewLog);
+                await card.save();
+                targetUserReviewLog = newUserReviewLog;
+            }
         }
         res.send(targetUserReviewLog);
     } catch (error) {
