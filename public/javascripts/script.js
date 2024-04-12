@@ -5,6 +5,13 @@
 let currentCardIndex = 0;
 
 function showCurrentCard() {
+    document.querySelectorAll(".filp").forEach(element => {
+        element.classList.add("hidden");
+    })
+    document.querySelectorAll(".show-answer").forEach(element => {
+        element.classList.remove("hidden");
+    })
+
     if (document.querySelectorAll(".card-item").length) {
         document.querySelectorAll(".card-item").forEach(element => {
             if (element.id === `card${currentCardIndex}`) {
@@ -42,7 +49,8 @@ async function setNextCardWithUser() {
 
 async function updateReviewLog() {
     const today = new Date();
-    const dueDate = new Date(today.setSeconds(today.getSeconds() + 30)).toISOString();
+    const dueDate = new Date(today.getTime() + 30 * 1000);
+    console.log(dueDate);
     const userId = document.querySelector("input[name='userId']").value;
     const cardId = document.querySelector(`input[name='card${currentCardIndex}Id']`).value;
 
