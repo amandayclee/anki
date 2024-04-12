@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var cardsCtrl = require('../controllers/cards')
+var ensureLoggedIn = require('../config/ensureLoggedIn');
 
 // GET /cards
 router.get('/', cardsCtrl.index);
 // GET /cards/new
-router.get('/new', cardsCtrl.new);
+router.get('/new', ensureLoggedIn, cardsCtrl.new);
 // GET /cards/:id/edit
-router.get('/:id/edit', cardsCtrl.edit);
+router.get('/:id/edit', ensureLoggedIn, cardsCtrl.edit);
 // POST /cards
-router.post('/', cardsCtrl.create);
+router.post('/', ensureLoggedIn, cardsCtrl.create);
 // DELETE /cards/:id
-router.delete('/:id', cardsCtrl.delete);
+router.delete('/:id', ensureLoggedIn, cardsCtrl.delete);
 // PUT /cards
-router.put('/:id/edit', cardsCtrl.update);
+router.put('/:id/edit', ensureLoggedIn, cardsCtrl.update);
 
 module.exports = router;

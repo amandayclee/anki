@@ -11,12 +11,9 @@ module.exports = {
 async function update(req, res) {
     try {
         const userReviewLog = await UserReviewLog.findById(req.params.id);
-        console.log(`before userReviewLog ${userReviewLog}`);
         userReviewLog.reviewTime.push(req.body.reviewTime);
         userReviewLog.dueTime = req.body.dueTime;
         await userReviewLog.save();
-
-        console.log(`after userReviewLog ${userReviewLog}`);
         res.send('ok');
     } catch (error) {
         console.error(error);

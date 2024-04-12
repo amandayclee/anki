@@ -5,24 +5,32 @@
         <th>Front</th>
         <th>Back</th>
         <th>Deck</th>
+        <% if (user) { %>
         <th></th>
+        <% } %>
       </tr>
     </thead>
     <tbody>
-      <% decks.forEach((d) => { %>
-        <% d.cards.forEach((c) => { %>  
-          <tr>
-            <td><%= c.front %></td>
-            <td><%= c.back %></td>
-            <td><%= d.name %></td>
-            <td>
-              <% if (user?._id.equals(c.user)) { %>
-                <a href="/cards/<%= c._id %>/edit?deck=<%= d._id %>"><img id="setting-img" src="/images/setting.png"></a>
-              <% } %>
-            </td>
-          </tr>
+      <% if (decks.length !== 0) { %>
+        <% decks.forEach((d) => { %>
+          <% d.cards.forEach((c) => { %>  
+            <tr>
+              <td><%= c.front %></td>
+              <td><%= c.back %></td>
+              <td><%= d.name %></td>
+              <td>
+                <% if (user?._id.equals(c.user)) { %>
+                  <a href="/cards/<%= c._id %>/edit?deck=<%= d._id %>"><img id="setting-img" src="/images/setting.png"></a>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
         <% }) %>
-      <% }) %>
+      <% } else { %>
+        <tr>
+          <td>Log in to add some decks and cards!</td>
+        </tr>
+      <% } %>
     </tbody>
   </table>
 
