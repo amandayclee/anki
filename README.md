@@ -21,7 +21,7 @@ Anki is a popular open-source, spaced repetition flashcard program. It allows us
 </p>
 
 # Technologies Used
-- Javascript (Node.js, Express.js, Password.js)
+- Javascript (Node.js, Express.js, Passport.js)
 - Ejs
 - CSS
 
