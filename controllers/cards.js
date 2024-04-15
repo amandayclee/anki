@@ -11,7 +11,7 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const decks = await Deck.find({}).populate("cards");
+    const decks = await Deck.find({}).populate('cards');
     res.render('cards/index', { decks, title: 'All Cards' });
 }
 
@@ -83,8 +83,8 @@ async function update(req, res) {
         newDeck.cards.push(card);
         await oldDeck.save();
         await newDeck.save();
-        res.render(`cards/edit`, {
-            title: `Edit Card ${card._id}`,
+        res.render('cards/edit', {
+            title: `Edit Card`,
             card,
             deck: newDeck,
             decks,
